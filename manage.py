@@ -3,7 +3,7 @@
 import os
 import sys
 
-
+#Farhad:test editing files
 def main():
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'twitterClone.settings')
     try:
