@@ -3,9 +3,9 @@
 import os
 import sys
 
-#Farhad:test editing files
+
 def main():
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'twitterClone.settings')
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'intweet.settings')
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:
