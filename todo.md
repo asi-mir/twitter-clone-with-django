@@ -1,12 +1,14 @@
 1. Tweets
-    every tweet can have a parrent/child tweets
+    Every tweet can have a parrent/child tweets
     -> Creating
         -> Text: non-limited length
-        -> Image: just one pic for trial user more for paid users
+        -> Image: just one pic for trial user more for paid users 
+            ->Media storage server
         -> Hashtags: user should enter at least one hashtag for every tweet
         -> Restriction: user can restrict who can comment him/her's tweet(Followers/Following/Mentioned Users)
     -> Delete
     -> Retweet
+    -> Liking
 
 2. Users
     -> Register 
