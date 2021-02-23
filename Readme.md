@@ -7,5 +7,5 @@ pip install pipenv #install pipenv
 pipenv install --dev #install below dependencies 
 ```
 ## Requirements:
--Python==3.7
--Django==2.2
+- Python==3.7
+- Django==2.2
