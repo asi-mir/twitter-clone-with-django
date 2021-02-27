@@ -1,6 +1,6 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser
-from django.contrib.auth.base_user import BaseUserManager
+from django.contrib.auth.models import AbstractUser, BaseUserManager
+
 
 class UserManager(BaseUserManager):
     def create_user(self, phone, password=None, **other_fields):
@@ -19,9 +19,8 @@ class UserManager(BaseUserManager):
         if other_fields.get('is_staff') is not True:
             raise ValueError('is_staff in admin must True')
         if other_fields.get('is_superuser') is not True:
-            raise ValueError('is_superuser in admin must True')       
-        return self.create_user(phone,password,**other_fields)
-
+            raise ValueError('is_superuser in admin must True')
+        return self.create_user(phone, password, **other_fields)
 
 
 class User(AbstractUser):
@@ -37,10 +36,11 @@ class User(AbstractUser):
     REQUIRED_FIELDS = []
 
 
-class profile(models.Model):
+class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     bio = models.TextField(blank=True, null=True)
-    #image = models.ImageField(upload_to = 'profile_pics')
+
+    # image = models.ImageField(upload_to = 'profile_pics')
     # Add more fields
 
     @property
