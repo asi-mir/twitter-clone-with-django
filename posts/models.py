@@ -13,6 +13,7 @@ class Post(models.Model):
     def __str__(self):
         return str(self.body)
 
+    @property
     def get_liked(self):
         return self.liked.all()
 
