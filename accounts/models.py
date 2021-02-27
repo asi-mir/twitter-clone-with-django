@@ -22,7 +22,6 @@ class UserManager(BaseUserManager):
             raise ValueError('is_superuser in admin must True')
         return self.create_user(phone, password, **other_fields)
 
-
 class User(AbstractUser):
     username = None
     phone = models.CharField(max_length=11, unique=True)

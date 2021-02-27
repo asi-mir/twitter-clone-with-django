@@ -8,6 +8,7 @@ class Post(models.Model):
     body = models.TextField()
     liked = models.ManyToManyField(Profile, default=None, blank=True, related_name='liked')
     creat_date = models.DateTimeField(auto_now_add=True)
+    parent = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=type)
 
     def __str__(self):
         return str(self.body)
