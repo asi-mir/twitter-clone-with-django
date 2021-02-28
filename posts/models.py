@@ -34,7 +34,7 @@ def file_path_dir(instance, filename):
     base_name = os.path.basename(filename)
     name, ext = os.path.splitext(base_name)
 
-    return "uploaded/user/" + "/" + str(instance.post.author) + "/" + str(ext) + "/" + filename
+    return "uploaded/user/post" + "/" + str(instance.post.author) + "/" + str(ext) + "/" + filename
 
 
 class Files(models.Model):
