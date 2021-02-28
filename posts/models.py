@@ -29,7 +29,7 @@ class Post(models.Model):
 
 
 class Files(models.Model):
-    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, blank=False)
     files = models.FileField(upload_to='images', null=True, blank=True)
 
     def __str__(self):
