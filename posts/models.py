@@ -1,3 +1,5 @@
+import os
+
 from django.db import models
 from accounts.models import Profile
 from taggit.managers import TaggableManager
@@ -28,9 +30,16 @@ class Post(models.Model):
         return self.liked.all().count()
 
 
+def file_path_dir(instance, filename):
+    base_name = os.path.basename(filename)
+    name, ext = os.path.splitext(base_name)
+
+    return "uploaded/user/" + "/" + str(instance.post.author) + "/" + str(ext) + "/" + filename
+
+
 class Files(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE, blank=False)
-    files = models.FileField(upload_to='images', null=True, blank=True)
+    files = models.FileField(upload_to=file_path_dir, null=True, blank=True)
 
     def __str__(self):
         return self.post.body + 'File'
