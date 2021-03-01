@@ -36,8 +36,10 @@ class User(AbstractUser):
 
     REQUIRED_FIELDS = []
 
+    backend = 'accounts.custombackend.PhoneBackend'
 
-class profile(models.Model):
+
+class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     bio = models.TextField(blank=True, null=True)
     #image = models.ImageField(upload_to = 'profile_pics')
