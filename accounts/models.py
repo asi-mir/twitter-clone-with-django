@@ -35,6 +35,8 @@ class User(AbstractUser):
 
     REQUIRED_FIELDS = []
 
+    backend = 'accounts.custombackend.PhoneBackend'
+
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
