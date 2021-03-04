@@ -71,13 +71,13 @@ class VerifyTokenView(View):
             print(token_expiration)
             print(datetime.datetime.now())
             expiration_date = datetime.datetime.strptime(token_expiration, '%Y-%m-%d %H:%M:%S.%f') 
-            if expiration_date < datetime.datetime.now():
-                user = User.objects.get(phone=phone)
-                random_token,salt,expiration_date = token.generate_token()
-                print(expiration_date)
-                user.token = random_token
-                user.salt = salt
-                user.token_expiration_date= expiration_date
+            # if expiration_date < datetime.datetime.now():
+            #     user = User.objects.get(phone=phone)
+            #     random_token,salt,expiration_date = token.generate_token()
+            #     print(expiration_date)
+            #     user.token = random_token
+            #     user.salt = salt
+            #     user.token_expiration_date= expiration_date
             expr = str(expiration_date.month) + '/' + str(expiration_date.day) + '/' + str(expiration_date.year) + ' ' + str(expiration_date.hour) + ':' + str(expiration_date.minute) + ':' + str(expiration_date.second)
            
             return render(request, 'verify.html', {'phone': phone,'expiration_date':expr})
