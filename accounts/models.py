@@ -27,7 +27,7 @@ class User(AbstractUser):
     username = None
     phone = models.CharField(max_length=11, unique=True)
     token = models.CharField(max_length=64,blank=True, null=True)
-    token_expiration_date = models.DateTimeField()
+    token_expiration_date = models.DateTimeField(null=True)
     salt = models.CharField(max_length=32,null=True)
     object = UserManager()
 
