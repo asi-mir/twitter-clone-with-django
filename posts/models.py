@@ -2,7 +2,7 @@ import os
 
 from django.db import models
 from accounts.models import Profile
-from taggit.managers import TaggableManager
+#from taggit.managers import TaggableManager
 
 
 class Post(models.Model):
@@ -16,7 +16,7 @@ class Post(models.Model):
 
     parent = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=type)
 
-    tags = TaggableManager()
+    #tags = TaggableManager()
 
     def __str__(self):
         return str(self.body)

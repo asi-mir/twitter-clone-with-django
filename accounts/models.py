@@ -26,9 +26,9 @@ class UserManager(BaseUserManager):
 class User(AbstractUser):
     username = None
     phone = models.CharField(max_length=11, unique=True)
-    token = models.PositiveIntegerField(blank=True, null=True)
-    token_date = models.DateTimeField(auto_now=True)
-
+    token = models.CharField(max_length=64,blank=True, null=True)
+    token_expiration_date = models.DateTimeField()
+    salt = models.CharField(max_length=32,null=True)
     object = UserManager()
 
     USERNAME_FIELD = 'phone'
