@@ -70,13 +70,17 @@ class VerifyTokenView(View):
             token_expiration = request.session.get('token_expiration')
             print(token_expiration)
             print(datetime.datetime.now())
-            remaining_time = datetime.datetime.strptime(token_expiration, '%Y-%m-%d %H:%M:%S.%f') -  datetime.datetime.now() 
-            seconds_in_day = 24 * 60 * 60
-            min,sec=divmod(remaining_time.days * seconds_in_day + remaining_time.seconds, 60)
-            if min < 0:
-                min,sec =0,0
-            print(min,sec)
-            return render(request, 'verify.html', {'phone': phone,'min':min,'sec':sec})
+            expiration_date = datetime.datetime.strptime(token_expiration, '%Y-%m-%d %H:%M:%S.%f') 
+            if expiration_date < datetime.datetime.now():
+                user = User.objects.get(phone=phone)
+                random_token,salt,expiration_date = token.generate_token()
+                print(expiration_date)
+                user.token = random_token
+                user.salt = salt
+                user.token_expiration_date= expiration_date
+            expr = str(expiration_date.month) + '/' + str(expiration_date.day) + '/' + str(expiration_date.year) + ' ' + str(expiration_date.hour) + ':' + str(expiration_date.minute) + ':' + str(expiration_date.second)
+           
+            return render(request, 'verify.html', {'phone': phone,'expiration_date':expr})
         except User.DoesNotExist:
             return redirect("accounts:signup")
 
