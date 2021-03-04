@@ -1,6 +1,6 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser
-from django.contrib.auth.base_user import BaseUserManager
+from django.contrib.auth.models import AbstractUser, BaseUserManager
+
 
 class UserManager(BaseUserManager):
     def create_user(self, phone, password=None, **other_fields):
@@ -19,28 +19,30 @@ class UserManager(BaseUserManager):
         if other_fields.get('is_staff') is not True:
             raise ValueError('is_staff in admin must True')
         if other_fields.get('is_superuser') is not True:
-            raise ValueError('is_superuser in admin must True')       
-        return self.create_user(phone,password,**other_fields)
-
+            raise ValueError('is_superuser in admin must True')
+        return self.create_user(phone, password, **other_fields)
 
 
 class User(AbstractUser):
     username = None
     phone = models.CharField(max_length=11, unique=True)
-    token = models.PositiveIntegerField(blank=True, null=True)
-    token_date = models.DateTimeField(auto_now=True)
-
+    token = models.CharField(max_length=64,blank=True, null=True)
+    token_expiration_date = models.DateTimeField()
+    salt = models.CharField(max_length=32,null=True)
     object = UserManager()
 
     USERNAME_FIELD = 'phone'
 
     REQUIRED_FIELDS = []
 
+    backend = 'accounts.custombackend.PhoneBackend'
 
-class profile(models.Model):
+
+class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     bio = models.TextField(blank=True, null=True)
-    #image = models.ImageField(upload_to = 'profile_pics')
+
+    # image = models.ImageField(upload_to = 'profile_pics')
     # Add more fields
 
     @property

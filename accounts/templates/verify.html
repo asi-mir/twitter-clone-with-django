@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+
+
+{% block body %}
+
+  <div>
+    <div>
+        <div>
+            <h2>Login / Register</h2>
+        </div>
+      
+    </div>
+    <form action="." method="post">
+        {% csrf_token %}
+        <input type="text" value="{{ phone }}" readonly disabled  name="phone" >
+        <input type="text"  required name="token"  placeholder="Enter Token">
+        {{ min }} : {{ sec }}
+        <input type="submit" value="Check Token">
+        {% if min == 0 and sec == 0 %}
+        <input type="submit" value="Resend Token">
+        {% endif %}
+
+
+    </form>
+    <div>
+      <a href="/logout">Change Phone</a>
+      
+    </div>
+  </div>
+
+{% endblock body %}

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block body %}
+
+    <h1>
+        
+        {% if user.is_authenticated %}
+            <h1> Welcome {{ user }} </h1>
+        {% else %}
+            <h1>User not found</h1>
+        {% endif %}
+    </h1>
+
+    <form action="." method="post">
+        {% csrf_token %}    
+    <input type="submit" value="Logout">
+    </form>
+
+
+
+{% endblock %}
