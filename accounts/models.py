@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser, BaseUserManager
+from django.utils import timezone
 
 
 class UserManager(BaseUserManager):
@@ -26,9 +27,10 @@ class UserManager(BaseUserManager):
 class User(AbstractUser):
     username = None
     phone = models.CharField(max_length=11, unique=True)
-    token = models.CharField(max_length=64,blank=True, null=True)
+    token = models.CharField(max_length=64, blank=True, null=True)
     token_expiration_date = models.DateTimeField(null=True)
-    salt = models.CharField(max_length=32,null=True)
+    salt = models.CharField(max_length=32, null=True)
+    profile_status = models.BooleanField(default=False)
     object = UserManager()
 
     USERNAME_FIELD = 'phone'
@@ -39,11 +41,30 @@ class User(AbstractUser):
 
 
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    bio = models.TextField(blank=True, null=True)
 
-    # image = models.ImageField(upload_to = 'profile_pics')
-    # Add more fields
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    first_name = models.CharField(max_length=30, default="")
+    last_name = models.CharField(max_length=30, blank=True, default="")
+    GENDER_CHOICES = (
+        ('Male', 'male'),
+        ('Female', 'female'),
+        ('None', 'none'),
+    )
+    gender = models.CharField(max_length=6, choices=GENDER_CHOICES, null=True)
+    bio = models.TextField(max_length=150, null=True)
+    profile_image = models.ImageField(default='default.png', upload_to='profile_pics')
+    location = models.CharField(max_length=20, default="")
+    birthdate = models.DateTimeField(blank=True, null=True)
+    created_date = models.DateTimeField(blank=True, default=timezone.now)
+    reported_times = models.PositiveIntegerField(blank=True, null=True)
+    ACCOUNT_TYPE_CHOICES = (
+        ('Paid', 'Paid'),
+        ('Trial', 'Trial'),
+    )
+    account_type = models.CharField(max_length=6, choices=ACCOUNT_TYPE_CHOICES, default='')
+
+    def __str__(self):
+          return f'{self.user.phone}'
 
     @property
     def followers(self):

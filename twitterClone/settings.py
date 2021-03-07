@@ -35,8 +35,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'accounts',
-    'posts',
+    'bootstrap4',
+    'accounts.apps.AccountsConfig',
+    'posts.apps.PostsConfig',
     'taggit',
 ]
 
@@ -121,3 +122,8 @@ USE_TZ = False
 
 AUTH_USER_MODEL = 'accounts.User'
 STATIC_URL = '/static/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+
+LOGIN_REDIRECT_URL = 'home'
+LOGIN_URL = ''

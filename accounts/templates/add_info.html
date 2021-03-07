@@ -1,0 +1,28 @@
+{% extends "base2.html" %}
+
+{% block body %}
+
+    <p>Complete Your Profile</p>
+    <p>step 3 of 4</p>
+    <form method="post">
+        {% csrf_token %}
+        {% for field in form %}
+        <p>
+            {{ field.label_tag }}<br>
+            {{ field }}
+
+            {% for error in field.errors %}
+        <p style="color: red">{{ error }}</p>
+        {% endfor %}
+        </p>
+        {% endfor %}
+        <button type="submit">Next</button>
+    <a class="btn btn-primary" href="{% url 'accounts:home' %}">Skip</a>
+    </form>
+
+
+
+</form>
+
+
+{% endblock %}

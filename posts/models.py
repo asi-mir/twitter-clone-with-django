@@ -1,12 +1,13 @@
 import os
 
 from django.db import models
-from accounts.models import Profile
+from accounts.models import Profile , User
 from taggit.managers import TaggableManager
 
 
 class Post(models.Model):
-    author = models.ForeignKey(Profile, on_delete=models.CASCADE, null=False, related_name='author')
+
+    author = models.ForeignKey(User, on_delete=models.CASCADE, null=False, related_name='author')
 
     body = models.TextField()
 

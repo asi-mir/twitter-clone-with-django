@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{%block content%}
+
+<div class="container">
+   <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+       <fieldset class="form-group">
+         <legend class="border-bottom mb-4"> Confirm Delete!  </legend>
+            <table>
+                {{ form.as_table}}
+            </table>
+        </fieldset>
+
+             <button class="btn btn-danger" type="submit">Delete</button>
+    </form>
+    <br>
+    <a href='{%url "home"%}'> <button  class="btn btn-outline-info" >Cancel</button></a>
+</div>
+
+{%endblock content%}
