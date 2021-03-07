@@ -28,8 +28,8 @@
                       <p class="card-text"><h5>{{post.body}}</h5></p>
                        <p><h6>{{post.creat_date}}</h6></p>
                            {% if post.author == user  %}
-                          <a href='{% url "tweetupdate" post.id %}'> <button  class="btn btn-outline-info" type="submit">Edit</button></a>
-                          <a href='{% url "tweetdelete" post.id %}'> <button  class="btn btn-outline-danger" type="submit">Delete</button></a>
+                          <a href='{% url "posts:tweetupdate" post.id %}'> <button  class="btn btn-outline-info" type="submit">Edit</button></a>
+                          <a href='{% url "posts:tweetdelete" post.id %}'> <button  class="btn btn-outline-danger" type="submit">Delete</button></a>
                           {% endif %}
                   </div>
 
