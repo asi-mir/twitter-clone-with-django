@@ -1,22 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e2d3a776-66d5-435b-a25b-d70504d173b3" name="Default Changelist" comment="3/7/2021">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/templates/add_info.html" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/templates/add_info.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/templates/add_info2.html" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/templates/add_info2.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/templates/base2.html" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/templates/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/templates/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/templates/register.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/templates/verify.html" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/templates/verify.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/posts/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/posts/templates/base2.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/posts/templates/create.html" beforeDir="false" afterPath="$PROJECT_DIR$/posts/templates/create.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/posts/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/posts/templates/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/posts/templates/tweet_confirm_delete.html" beforeDir="false" afterPath="$PROJECT_DIR$/posts/templates/tweet_confirm_delete.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/posts/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/posts/urls.py" afterDir="false" />
+    <list default="true" id="e2d3a776-66d5-435b-a25b-d70504d173b3" name="Default Changelist" comment="new commit">
+      <change beforePath="$PROJECT_DIR$/accounts/templates/profile/createprofile.html" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/templates/profile/createprofile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accounts/templates/profile/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/templates/profile/profile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accounts/templates/profile/updateprofile.html" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/templates/profile/updateprofile.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -105,7 +93,21 @@
       <option name="project" value="LOCAL" />
       <updated>1615125310710</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="3/7/2021">
+      <created>1615139639812</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1615139639812</updated>
+    </task>
+    <task id="LOCAL-00004" summary="new commit">
+      <created>1615139789459</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1615139789459</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -125,6 +127,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="3/7/2021" />
-    <option name="LAST_COMMIT_MESSAGE" value="3/7/2021" />
+    <MESSAGE value="new commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="new commit" />
   </component>
 </project>
