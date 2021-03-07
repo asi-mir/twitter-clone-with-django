@@ -162,8 +162,9 @@ class VerifyTokenView(View):
         user.save()
         login(request, user)
         if request.session.get('register_user'):
-             return redirect("/add_info")
-        return redirect("/home")
+            return redirect("accounts:info")
+        else:
+            return redirect("posts:home")
 
 
 

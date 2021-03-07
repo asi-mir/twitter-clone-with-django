@@ -3,7 +3,7 @@ from django.urls import path
 from . import views
 from .views import TweetListView, TweetCreateView,TweetUpdateView,TweetDeleteView
 
-app_name = "post"
+app_name = "posts"
 
 urlpatterns = [
   path('home/', TweetListView.as_view(), name='home'),

@@ -1,4 +1,4 @@
-{% extends "base2.html" %}
+{% extends "base.html" %}
 
 {% block body %}
 
@@ -17,7 +17,7 @@
         </p>
         {% endfor %}
         <button type="submit">Next</button>
-    <a class="btn btn-primary" href="{% url 'accounts:home' %}">Skip</a>
+    <a class="btn btn-primary" href="{% url 'posts:home' %}">Skip</a>
     </form>
 
 

@@ -30,7 +30,6 @@ class User(AbstractUser):
     token = models.CharField(max_length=64, blank=True, null=True)
     token_expiration_date = models.DateTimeField(null=True)
     salt = models.CharField(max_length=32, null=True)
-    profile_status = models.BooleanField(default=False)
     object = UserManager()
 
     USERNAME_FIELD = 'phone'
@@ -53,7 +52,6 @@ class Profile(models.Model):
     gender = models.CharField(max_length=6, choices=GENDER_CHOICES, null=True)
     bio = models.TextField(max_length=150, null=True)
     profile_image = models.ImageField(default='default.png', upload_to='profile_pics')
-    location = models.CharField(max_length=20, default="")
     birthdate = models.DateTimeField(blank=True, null=True)
     created_date = models.DateTimeField(blank=True, default=timezone.now)
     reported_times = models.PositiveIntegerField(blank=True, null=True)
