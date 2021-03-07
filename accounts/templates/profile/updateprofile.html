@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{%block content%}
+
+<div class="container">
+   <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+       <fieldset class="form-group">
+         <legend class="border-bottom mb-4"> Edit Profile </legend>
+            <table>
+                {{ pform.as_table}}
+            </table>
+        </fieldset>
+
+             <button class="btn btn-outline-info" type="submit">Edit</button>
+    </form>
+</div>
+
+
+{%endblock content%}
+
