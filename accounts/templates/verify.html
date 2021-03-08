@@ -1,11 +1,13 @@
-{% extends 'base.html' %}
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>twitter</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
-
-{% block body %}
-
-
-<script>
+    <script>
 // Set the date we're counting down to
 
 var countDownDate = new Date("{{ expiration_date }}").getTime();
@@ -15,18 +17,18 @@ var x = setInterval(function() {
 
   // Get today's date and time
   var now = new Date().getTime();
-    
+
   // Find the distance between now and the count down date
   var distance = countDownDate - now;
-    
+
   // Time calculations for days, hours, minutes and seconds
   var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
   var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-    
+
   // Output the result in an element with id="demo"
   document.getElementById("countdowntimer").innerHTML = minutes + "m " + seconds + "s ";
-    
-  // If the count down is over, write some text 
+
+  // If the count down is over, write some text
   if (distance < 0) {
     clearInterval(x);
     document.getElementById("countdowntimer").innerHTML = "EXPIRED";
@@ -34,28 +36,51 @@ var x = setInterval(function() {
   }
 }, 1000);
 </script>
+</head>
 
-  <div>
-    <div>
-        <div>
-            <h2>Login / Register</h2>
-        </div>
-      
-    </div>
-    <form action="." method="post">
-        {% csrf_token %}
-        <input type="text" value="{{ phone }}" readonly disabled  name="phone" >
-        <input type="text"  required name="token"  placeholder="Enter Token">
-        <p id="countdowntimer"></p>
-        <input type="submit" value="Check Token">
-        
+	<body>
+		<br> <br>
+
+    	<br> <br>
+				<div class="container">
+					<form   method="post"  >
+							{% csrf_token %}
+						<fieldset class="form-group">
+						  	<legend class="border-bottom mb-4">Verify Token</legend>
+						</fieldset>
 
 
-    </form>
-    <div>
-      <a href="/logout">Change Phone</a>
-      <p id="resendtoken"></p>
-    </div>
-  </div>
+						 <div class="form-group">
+							<label for="exampleInputEmail1">Phone</label>
+							<input type="text"   name="phone" value="{{ phone }}" readonly disabled class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" >
 
-{% endblock body %}
+  						</div>
+
+                        <div class="form-group">
+							<label for="exampleInputEmail1">Token</label>
+							<input type="text"   required name="token"  class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Token" >
+
+  						</div>
+
+                        <p id="countdowntimer"></p>
+
+
+						<div class="form-group">
+               				 <button class="btn btn-outline-info" type="submit">Check Token</button>
+
+                        </div>
+					</form>
+				</div>
+		{%if messages%}
+	<div class="alert alert-danger" role="alert">
+	{% for message in messages %}
+		<h5 align="center">{{message}}</h5>
+	{% endfor %}
+	</div>
+	{%endif%}
+	</body>
+</html>
+
+
+
+

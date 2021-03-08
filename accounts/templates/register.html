@@ -1,20 +1,48 @@
-{% extends 'base.html' %}
-{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>twitter</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+</head>
+
+	<body>
+		<br> <br>
+
+    	<br> <br>
+				<div class="container">
+					<form   method="post"  >
+							{% csrf_token %}
+						<fieldset class="form-group">
+						  	<legend class="border-bottom mb-4">Login</legend>
+						</fieldset>
 
 
-    <div>
-        <div>
-            <div>
-                <h2>Login / Register</h2>
-            </div>
-        </div>
-        <form action="." method="post">
-            {% csrf_token %}
-        <input type="text"  required name="phone" placeholder="Enter Phone">
-        <input type="submit" value="Submit">
-        </form>
+						 <div class="form-group">
+							<label for="exampleInputEmail1">Phone</label>
+							<input type="text"  required name="phone" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Phone">
 
-    </div>
+  						</div>
 
 
-{% endblock %}
+						<div class="form-group">
+               				 <button class="btn btn-outline-info" type="submit">Submit</button>
+
+                        </div>
+					</form>
+				</div>
+		{%if messages%}
+	<div class="alert alert-danger" role="alert">
+	{% for message in messages %}
+		<h5 align="center">{{message}}</h5>
+	{% endfor %}
+	</div>
+	{%endif%}
+	</body>
+</html>
+
+
+
+
