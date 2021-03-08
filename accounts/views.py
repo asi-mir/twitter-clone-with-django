@@ -23,7 +23,7 @@ def ProfileUpdateView(request):
             pform.save()
             return redirect('/profile')
     else:
-        pform = ProfileUpdateForm()
+        pform = ProfileUpdateForm(instance=request.user.profile)
 
     return render(request, 'profile/updateprofile.html', {'pform': pform})
 
