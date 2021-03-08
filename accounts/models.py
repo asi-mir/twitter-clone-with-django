@@ -1,8 +1,7 @@
+from django import forms
 from django.db import models
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.utils import timezone
-
-
 class UserManager(BaseUserManager):
     def create_user(self, phone, password=None, **other_fields):
         if not phone:
@@ -51,7 +50,7 @@ class Profile(models.Model):
     )
     gender = models.CharField(max_length=6, choices=GENDER_CHOICES, null=True)
     bio = models.TextField(max_length=150, null=True)
-    profile_image = models.ImageField(default='default.png', upload_to='profile_pics')
+    profile_image = models.ImageField(default='profile_pics/default.png', upload_to='profile_pics')
     birthdate = models.DateTimeField(blank=True, null=True)
     created_date = models.DateTimeField(blank=True, default=timezone.now)
     reported_times = models.PositiveIntegerField(blank=True, null=True)
