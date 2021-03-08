@@ -39,10 +39,10 @@ class Account_info(View):
         form = self.form_class(request.POST)
         if form.is_valid():
             print("form validated")
-            first_name = form.data.get("first_name")
-            last_name = form.data.get("last_name")
-            gender = form.data.get("gender")
-            birthdate = form.data.get("birthdate")
+            # first_name = form.data.get("first_name")
+            # last_name = form.data.get("last_name")
+            # gender = form.data.get("gender")
+            # birthdate = form.data.get("birthdate")
             profile = form.save(commit=False)
             profile.user = request.user
             profile.save()
@@ -62,9 +62,7 @@ class Account_info2(View):
         form = self.form_class(request.POST)
         if form.is_valid():
             print("validated")
-            profile_image = form.data.get("profile_image")
-            bio = form.data.get("bio")
-            Profile.objects.update(profile_image=profile_image, bio=bio)
+            form.save(commit=False)
             return redirect("/home")
         else:
             return render(request, self.template_name, {'form': form})
@@ -100,6 +98,7 @@ class SignupView(View):
                 request.session['user_phone'] = user.phone
                 request.session['register_user'] = False
                 request.session['token_expiration'] = str(user.token_expiration_date)
+                request.session.save()
                 return redirect("accounts:verify")
 
         except User.DoesNotExist:
@@ -117,6 +116,7 @@ class SignupView(View):
                 request.session['user_phone'] = user.phone
                 request.session['token_expiration'] = str(user.token_expiration_date)
                 request.session['register_user'] = True
+                request.session.save()
                 return redirect("accounts:verify")
 
         return render(request, self.template_name, {"form": self.form_class})
@@ -147,9 +147,8 @@ class VerifyTokenView(View):
             return redirect("accounts:signup")
 
     def post(self, request):
-        print("request.session.get('register_user') =", request.session.get('register_user'))
         phone = request.session.get('user_phone')
-        print(phone)
+        is_newuser = request.session.get('register_user')
         user = User.objects.get(phone=phone)
         entry_hash_token = hashlib.sha256((request.POST.get('token') + user.salt).encode('utf-8')).hexdigest()
         if entry_hash_token != user.token:
@@ -161,7 +160,7 @@ class VerifyTokenView(View):
         user.is_active = True
         user.save()
         login(request, user)
-        if request.session.get('register_user'):
+        if is_newuser:
             return redirect("accounts:info")
         else:
             return redirect("posts:home")
