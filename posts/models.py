@@ -11,9 +11,8 @@ class Post(models.Model):
 
     body = models.TextField()
 
-    liked = models.ManyToManyField(Profile, default=None, blank=True, related_name='liked')
 
-    creat_date = models.DateTimeField(auto_now_add=True)
+    create_date = models.DateTimeField(auto_now_add=True)
 
     parent = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=type)
 
@@ -22,13 +21,16 @@ class Post(models.Model):
     def __str__(self):
         return str(self.body)
 
-    @property
-    def get_liked(self):
-        return self.liked.all()
+    # @property
+    # def get_liked(self):
+    #     return self.liked.all()
+    #
+    # @property
+    # def like_count(self):
+    #     return self.liked.all().count()
 
-    @property
-    def like_count(self):
-        return self.liked.all().count()
+    def get_total_likes(self):
+        return self.likes.users.count()
 
 
 def file_path_dir(instance, filename):
@@ -37,6 +39,14 @@ def file_path_dir(instance, filename):
 
     return "uploaded/user/post" + "/" + str(instance.post.author) + "/" + str(ext) + "/" + filename
 
+
+class Like(models.Model):
+
+    post = models.OneToOneField(Post, related_name="likes", on_delete=models.CASCADE)
+    users = models.ManyToManyField(User, related_name='requirement_comment_likes')
+
+    def __str__(self):
+        return str(self.post.body)[:30]
 
 class Files(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE, blank=False)

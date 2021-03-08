@@ -1,12 +1,12 @@
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from .models import Post
+from .models import Post , Like
 
 
 class TweetListView(LoginRequiredMixin, ListView):
     model = Post
     template_name = 'home.html'
-    ordering = ['-creat_date']
+    ordering = ['-create_date']
 
 
 class TweetCreateView(LoginRequiredMixin, CreateView):
@@ -48,3 +48,14 @@ class TweetDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         if self.request.user == post.author:
             return True
         return False
+
+
+class TweetLikeView(LoginRequiredMixin, CreateView):
+    model = Like
+    # template_name = 'create.html'
+    fields = ['users']
+    success_url = '/home'
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)

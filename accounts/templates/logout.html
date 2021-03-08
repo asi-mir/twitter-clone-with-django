@@ -1,0 +1,32 @@
+<html>
+<head>
+  <title>twitter</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+</head>
+
+	<body>
+		<br> <br>
+    	<h2 align="center" style="color : DodgerBlue ">twitter</h2>
+    	<br> <br>
+				<div class="container">
+
+                    <h4>Are you sure to logout ? </h4>
+                    <a href='{% url "accounts:logout" %}'><p>Yes</p></a>
+
+                    <a href='{% url "posts:home" %}'><p>NO</p></a>
+
+
+				</div>
+		{%if messages%}
+	<div class="alert alert-danger" role="alert">
+	{% for message in messages %}
+	<h5 align="center">{{message}}</h5>
+	{% endfor %}
+	</div>
+	{%endif%}
+	</body>
+</html>
+

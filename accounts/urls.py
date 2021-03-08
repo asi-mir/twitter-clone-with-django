@@ -16,6 +16,7 @@ urlpatterns = [
     path('updateprofile/', views.ProfileUpdateView, name='updateprofile'),
     path('add_info/', views.Account_info.as_view(), name='info'),
     path('add_info2/', views.Account_info2.as_view(), name='info2'),
+    path('confirmlogout/', views.LogoutConfirmView, name='logoutconfirm'),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
