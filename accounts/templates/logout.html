@@ -9,15 +9,14 @@
 
 	<body>
 		<br> <br>
-    	<h2 align="center" style="color : DodgerBlue ">twitter</h2>
     	<br> <br>
 				<div class="container">
 
                     <h4>Are you sure to logout ? </h4>
-                    <a href='{% url "accounts:logout" %}'><p>Yes</p></a>
 
-                    <a href='{% url "posts:home" %}'><p>NO</p></a>
+                    <a href='{% url "accounts:logout" %}'><button type="button" class="btn btn-outline-success">Yes</button></a>
 
+                    <a href='{% url "posts:home" %}'><button type="button" class="btn btn-outline-warning">No</button></a>
 
 				</div>
 		{%if messages%}
