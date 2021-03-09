@@ -4,7 +4,7 @@ def generate_token():
     token = ''.join(str(random.randint(0,9)) for i in range(6))
     salt = uuid.uuid4().hex
     #send2faTokenToUser(token)
-    expiration_date = datetime.datetime.now()+datetime.timedelta(minutes = 1)
+    expiration_date = datetime.datetime.now()+datetime.timedelta(minutes = 3)
     print(token,salt,expiration_date)
     token += salt
     hash_token=hashlib.sha256(token.encode('utf-8')).hexdigest()

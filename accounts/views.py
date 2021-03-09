@@ -17,15 +17,15 @@ def Profile(request):
 
 
 def ProfileUpdateView(request):
-    if request.method == 'POST':
-        pform = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
-        if pform.is_valid():
-            pform.save()
-            return redirect('/profile')
-    else:
-        pform = ProfileUpdateForm(instance=request.user.profile)
+        if request.method == 'POST':
+            pform = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
+            if pform.is_valid():
+                pform.save()
+                return redirect('/profile')
+        else:
+            pform = ProfileUpdateForm(instance=request.user.profile)
 
-    return render(request, 'profile/updateprofile.html', {'pform': pform})
+        return render(request, 'profile/updateprofile.html', {'pform': pform})
 
 
 class Account_info(View):
@@ -56,14 +56,13 @@ class Account_info2(View):
     template_name = "add_info2.html"
 
     def get(self, request, *args, **kwargs):
-        return render(request, self.template_name, {'form': self.form_class})
+        return render(request, self.template_name, {'form': self.form_class(instance =request.user.profile)})
 
     def post(self, request):
-        form = self.form_class(request.POST)
+        form = self.form_class(request.POST, request.FILES , instance=request.user.profile)
         if form.is_valid():
-            print("validated")
-            form.save(commit=False)
-            return redirect("/home")
+            form.save()
+            return redirect("posts:home")
         else:
             return render(request, self.template_name, {'form': form})
 
