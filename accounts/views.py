@@ -171,9 +171,6 @@ class LogoutView(View):
     def get(self, request):
         logout(request)
         return redirect("accounts:signup")
-<<<<<<< HEAD
-=======
 
 def LogoutConfirmView(request):
     return render(request, 'logout.html')
->>>>>>> 14fe8e6302e7b228c6f7cd94b46fa089c2ab427c

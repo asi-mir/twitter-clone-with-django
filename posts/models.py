@@ -1,13 +1,8 @@
 import os
 
 from django.db import models
-<<<<<<< HEAD
-from accounts.models import Profile
-#from taggit.managers import TaggableManager
-=======
 from accounts.models import Profile , User
 from taggit.managers import TaggableManager
->>>>>>> 14fe8e6302e7b228c6f7cd94b46fa089c2ab427c
 
 
 class Post(models.Model):

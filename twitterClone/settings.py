@@ -35,15 +35,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-<<<<<<< HEAD
-    'accounts',
-    'posts',
-=======
     'bootstrap4',
     'accounts.apps.AccountsConfig',
     'posts.apps.PostsConfig',
     'taggit',
->>>>>>> 14fe8e6302e7b228c6f7cd94b46fa089c2ab427c
 ]
 
 AUTHENTICATION_BACKENDS = [
