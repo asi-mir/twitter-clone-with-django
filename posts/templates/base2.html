@@ -32,15 +32,17 @@
             <ul class="navbar-nav">
 
               <li class="nav-item active">
-                  <a class="nav-link" href="/home"><h6>Home</h6> </a>
+                  <a class="nav-link" href="{% url 'posts:home' %}"><h6>Home</h6> </a>
               </li>
               <li class="nav-item">
-                  <a class="nav-link" href="/profile"><h6>Profile</h6></a>
+                  <a class="nav-link" href="{% url 'accounts:profile' %}"><h6>Profile</h6></a>
               </li>
 
                 <li class="nav-item">
                   <a class="nav-link" href="{% url 'accounts:logoutconfirm' %}"><h6>Logout</h6></a>
               </li>
+
+
 
             </ul>
       </div>
