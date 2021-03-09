@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+</head>
+<body>
+
+<br><br><br>
+<div class="container">
+   <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+       <fieldset class="form-group">
+         <legend class="border-bottom mb-4"> Step 3 of 4 (Create Profile) </legend>
+           {% for field in form %}
+        <p>
+            {{ field.label_tag }}<br>
+            {{ field }}
+
+            {% for error in field.errors %}
+        <p style="color: red">{{ error }}</p>
+            {% endfor %}
+        </p>
+        {% endfor %}
+        </fieldset>
+
+             <button class="btn btn-outline-info" type="submit">Edit</button>
+    </form>
+</div>
+
+</body>
+</html>

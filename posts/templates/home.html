@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{%block content%}
+
+        <div class="jumbotron">
+          <h1 class="display-4">Hello, {{user.profile.first_name}}!</h1>
+          <p class="lead">This is a simple twitter clone ! </p>
+          <hr class="my-4">
+          <p>Click below to Create Tweet</p>
+          <p class="lead">
+            <a class="btn btn-primary btn-lg" href='{% url "posts:createtweet" %}' role="button">Create tweet</a>
+          </p>
+        </div>
+
+    <br>
+
+<div class="container-fluid" >
+        {% for post in object_list %}
+
+                    <br>
+
+                  <div class="card w-50" >
+                      <div class="card-header">
+                       <a  class="nav-link" href="#"><h5>{{post.author.profile.first_name}}</h5></a>
+                      </div>
+                  <div class="card-body">
+                      <h5 class="card-title"> </h5>
+                      <p class="card-text"><h5>{{post.body}}</h5></p>
+                       <p><h6>{{post.creat_date}}</h6></p>
+                           {% if post.author == user  %}
+                          <a href='{% url "posts:tweetupdate" post.id %}'> <button  class="btn btn-outline-info" type="submit">Edit</button></a>
+                          <a href='{% url "posts:tweetdelete" post.id %}'> <button  class="btn btn-outline-danger" type="submit">Delete</button></a>
+                          {% endif %}
+                  </div>
+
+                </div>
+        {% endfor %}
+    </div>
+
+
+{%if messages %}
+	<div class="alert alert-danger" role="alert">
+
+	{% for message in messages %}
+	<h5 align="center">{{message}}</h5>
+	{% endfor %}
+
+	</div>
+	{%endif%}
+
+{%endblock content%}

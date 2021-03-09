@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <br>
+    <div class="container-fluid">
+        <div class="col-sm-2">
+            <div class="media">
+                <img class="rounded-circle account-img img-fluid" src="{{user.profile.profile_image.url}}">
+            </div>
+        </div>
+    </div>
+
+    <br>
+
+    <div class="card">
+        <div class="card-header">
+            <h5>User :{{user.phone}}</h5>
+        </div>
+        <div class="card-body">
+            <h6>First Name :</h6>
+             <p>{{user.profile.first_name}}</p>
+            <h6>Last Name :</h6>
+             <p>{{user.profile.last_name}}</p>
+            <h6>bio :</h6>
+             <p>{{user.profile.bio}}</p>
+            <h6>Gender :</h6>
+             <p>{{user.profile.gender}}</p>
+            <h6>Condition :</h6>
+             <p>{{user.profile.account_type}}</p>
+            <h6>location :</h6>
+             <p>{{user.profile.location}}</p>
+            <h6>Birth date :</h6>
+             <p>{{user.profile.birthdate}}</p>
+        </div>
+    </div>
+
+    <br>
+
+    <a   href="/updateprofile"> <button type="button" class="btn btn-secondary btn-lg btn-block">Edit Profile</button></a>
+
+{%endblock content%}
