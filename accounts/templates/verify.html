@@ -78,34 +78,3 @@ var x = setInterval(function() {
 	{%endif%}
 	</body>
 </html>
-
-
-
-
-<<<<<<< HEAD
-  <div>
-    <div>
-        <div>
-            <h2>Login / Register</h2>
-        </div>
-      
-    </div>
-    <form action="." method="post">
-        {% csrf_token %}
-        <input type="text" value="{{ phone }}" readonly disabled  name="phone" >
-        <input type="text"  required name="token"  placeholder="Enter Token">
-        <p id="countdowntimer"></p>
-        <input type="submit" value="Check Token">
-        
-
-
-    </form>
-    <div>
-      <a href="/logout">Change Phone</a>
-      <p id="resendtoken"></p>
-    </div>
-  </div>
-
-{% endblock body %}
-=======
->>>>>>> 14fe8e6302e7b228c6f7cd94b46fa089c2ab427c
