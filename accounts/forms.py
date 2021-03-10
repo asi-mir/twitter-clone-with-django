@@ -1,10 +1,11 @@
-from django import forms
-from .models import User
-from .models import Profile
-from django.core import validators
 from string import Template
-from django.utils.safestring import mark_safe
+
+from django import forms
+from django.core import validators
 from django.forms import ImageField
+from django.utils.safestring import mark_safe
+
+from .models import Profile, User
 
 
 class PictureWidget(forms.widgets.Widget):

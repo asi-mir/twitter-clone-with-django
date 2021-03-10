@@ -32,7 +32,7 @@ var x = setInterval(function() {
   if (distance < 0) {
     clearInterval(x);
     document.getElementById("countdowntimer").innerHTML = "EXPIRED";
-    document.getElementById("resendtoken").innerHTML = '<a href="/verify">Resend Code</a>'
+    document.getElementById("resendtoken").innerHTML = '<a href="">Resend Code</a>'
   }
 }, 1000);
 </script>
@@ -62,13 +62,14 @@ var x = setInterval(function() {
 
   						</div>
                         <p id="countdowntimer"></p>
-
+						<p id="resendtoken"></p>
 						<div class="form-group">
                				 <button class="btn btn-outline-info" type="submit">Check Token</button>
 
                         </div>
 					</form>
 				</div>
+
 		{%if messages%}
 	<div class="alert alert-danger" role="alert">
 	{% for message in messages %}

@@ -1,7 +1,7 @@
 import os
 
+from accounts.models import Profile, User
 from django.db import models
-from accounts.models import Profile , User
 from taggit.managers import TaggableManager
 
 
@@ -11,11 +11,11 @@ class Post(models.Model):
 
     body = models.TextField()
 
-
+    
     create_date = models.DateTimeField(auto_now_add=True)
 
     parent = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=type)
-
+    likes = models.ManyToManyField(User,related_name='tweets')
     #tags = TaggableManager()
 
     def __str__(self):
@@ -25,12 +25,12 @@ class Post(models.Model):
     # def get_liked(self):
     #     return self.liked.all()
     #
-    # @property
-    # def like_count(self):
-    #     return self.liked.all().count()
+    @property
+    def like_count(self):
+        return self.likes.count()
 
-    def get_total_likes(self):
-        return self.likes.users.count()
+    # def get_total_likes(self):
+    #     return self.likes.users.count()
 
 
 def file_path_dir(instance, filename):
@@ -38,15 +38,6 @@ def file_path_dir(instance, filename):
     name, ext = os.path.splitext(base_name)
 
     return "uploaded/user/post" + "/" + str(instance.post.author) + "/" + str(ext) + "/" + filename
-
-
-class Like(models.Model):
-
-    post = models.OneToOneField(Post, related_name="likes", on_delete=models.CASCADE)
-    users = models.ManyToManyField(User, related_name='requirement_comment_likes')
-
-    def __str__(self):
-        return str(self.post.body)[:30]
 
 class Files(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE, blank=False)
