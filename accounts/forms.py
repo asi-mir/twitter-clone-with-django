@@ -20,7 +20,12 @@ class SignupForm(forms.ModelForm):
 
 
 class ProfileView(forms.ModelForm):
+    user_name=forms.CharField(validators=[validators.MinLengthValidator(3)])
     first_name = forms.CharField(validators=[validators.MinLengthValidator(3)])
+    first_name=forms.CharField(required=False,widget=forms.TextInput(
+        attrs={
+            "placeholder":"optional"}))
+
     last_name = forms.CharField(required=False, widget=forms.TextInput(
         attrs={
             "placeholder": "optional"}))
@@ -30,7 +35,12 @@ class ProfileView(forms.ModelForm):
 
     class Meta:
         model = Profile
-        fields = ["first_name", "last_name", "gender", "birthdate"]
+        fields = ["user_name","first_name", "last_name", "gender", "birthdate"]
+    def clean(self):
+        user_name=self.cleaned_data["user_name"]  
+        if Profile.objects.filter(user_name=user_name).exists():
+            raise forms.ValidationError("This username is already taken")
+       
 
 
 class ProfileView2(forms.ModelForm):
