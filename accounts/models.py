@@ -42,6 +42,7 @@ class User(AbstractUser):
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user_name = models.CharField(max_length=30, blank=False,default="")
     first_name = models.CharField(max_length=30, default="")
     last_name = models.CharField(max_length=30, blank=True, default="")
     GENDER_CHOICES = (
