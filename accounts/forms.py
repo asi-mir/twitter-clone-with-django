@@ -21,7 +21,6 @@ class SignupForm(forms.ModelForm):
 
 class ProfileView(forms.ModelForm):
     user_name=forms.CharField(validators=[validators.MinLengthValidator(3)])
-    first_name = forms.CharField(validators=[validators.MinLengthValidator(3)])
     first_name=forms.CharField(required=False,widget=forms.TextInput(
         attrs={
             "placeholder":"optional"}))
