@@ -6,17 +6,16 @@ from taggit.managers import TaggableManager
 
 
 class Post(models.Model):
-
     author = models.ForeignKey(User, on_delete=models.CASCADE, null=False, related_name='author')
 
     body = models.TextField()
 
-    
     create_date = models.DateTimeField(auto_now_add=True)
 
     parent = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=type)
-    likes = models.ManyToManyField(User,related_name='tweets')
-    #tags = TaggableManager()
+    likes = models.ManyToManyField(User, related_name='tweets')
+
+    # tags = TaggableManager()
 
     def __str__(self):
         return str(self.body)
@@ -38,6 +37,7 @@ def file_path_dir(instance, filename):
     name, ext = os.path.splitext(base_name)
 
     return "uploaded/user/post" + "/" + str(instance.post.author) + "/" + str(ext) + "/" + filename
+
 
 class Files(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE, blank=False)
