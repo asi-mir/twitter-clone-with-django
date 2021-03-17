@@ -1,6 +1,6 @@
 import os
 
-from accounts.models import Profile, User
+from accounts.models import Interest, Profile, User
 from django.db import models
 from taggit.managers import TaggableManager
 
@@ -14,7 +14,7 @@ class Post(models.Model):
 
     parent = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=type)
     likes = models.ManyToManyField(User, related_name='tweets')
-
+    topic = models.ManyToManyField(Interest,related_name='topic')
     # tags = TaggableManager()
 
     def __str__(self):

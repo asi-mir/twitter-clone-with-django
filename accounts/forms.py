@@ -52,6 +52,11 @@ class ProfileView2(forms.ModelForm):
         model = Profile
         fields = ["profile_image", "bio"]
 
+class InterestView(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ["interest"]
+
 
 class ProfileUpdateForm(forms.ModelForm):
     first_name = forms.CharField(required=False, widget=forms.TextInput(
@@ -66,8 +71,8 @@ class ProfileUpdateForm(forms.ModelForm):
             "placeholder": "optional"}))
     YEARS = [x for x in range(1940, 2003)]
     birthdate = forms.DateField(initial="1994-06-21", widget=forms.SelectDateWidget(years=YEARS))
-
+    
     class Meta:
         model = Profile
         fields = ['first_name', 'last_name', 'gender',
-                  'profile_image', 'bio', 'account_type', 'birthdate']
+                  'profile_image', 'bio', 'account_type', 'birthdate','interest']

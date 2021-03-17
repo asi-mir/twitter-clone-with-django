@@ -9,7 +9,7 @@ from . import forms
 from . import token
 import hashlib, datetime
 from .forms import ProfileUpdateForm
-from .forms import ProfileView, ProfileView2
+from .forms import ProfileView, ProfileView2,InterestView
 
 
 def Profile(request):
@@ -62,11 +62,24 @@ class Account_info2(View):
         form = self.form_class(request.POST, request.FILES , instance=request.user.profile)
         if form.is_valid():
             form.save()
-            return redirect("posts:home")
+            return redirect("accounts:interests")
         else:
             return render(request, self.template_name, {'form': form})
 
+class Account_interests(View):
+    form_class = InterestView
+    template_name = "interests.html"
 
+    def get(self, request, *args, **kwargs):
+        return render(request, self.template_name, {'form': self.form_class()})
+
+    def post(self, request):
+        form = self.form_class(request.POST, instance=request.user.profile)
+        if form.is_valid():
+            form.save()
+            return redirect("posts:home")
+        else:
+            return render(request, self.template_name, {'form': form})
 # class HomeView(View):
 #     template_name = 'home.html'
 #     def get(self, request, *args, **kwargs):

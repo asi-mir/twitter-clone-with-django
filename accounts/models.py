@@ -40,6 +40,13 @@ class User(AbstractUser):
     backend = 'accounts.custombackend.PhoneBackend'
 
 
+class Interest(models.Model):
+    interest = models.CharField(max_length=20)
+    
+
+    def __str__(self):
+        return self.interest
+
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     user_name = models.CharField(max_length=30, blank=False, default="")
@@ -56,6 +63,7 @@ class Profile(models.Model):
     birthdate = models.DateTimeField(blank=True, null=True)
     created_date = models.DateTimeField(blank=True, default=timezone.now)
     reported_times = models.PositiveIntegerField(blank=True, null=True)
+    interest = models.ManyToManyField(Interest, blank=True)
     ACCOUNT_TYPE_CHOICES = (
         ('Paid', 'Paid'),
         ('Trial', 'Trial'),
@@ -80,17 +88,3 @@ class Follow(models.Model):
     date = models.DateTimeField(auto_now_add=True)
 
 
-class Field(models.Model):
-    field = models.CharField(max_length=20)
-
-    def __str__(self):
-        return self.field
-
-
-class Interest(models.Model):
-    interest = models.CharField(max_length=20)
-    field = models.ForeignKey(Field, on_delete=models.CASCADE)
-    user = models.ManyToManyField(User, blank=True)
-
-    def __str__(self):
-        return self.interest
