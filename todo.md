@@ -22,7 +22,7 @@
   - [x] Choose a profile picture(can be skept)
   - [x] Entering birthdate,gender
   - [x] Enter a biography(can be skept)
-  - [ ] Choose Interest topics(can be skept)
+  - [x] Choose Interest topics(can be skept)
   - [ ] Follow some friends by their full Name(can be skept)
   - [ ] Generating initial feed for user(based on interests,viewed tweets,liked tweets or if no data provided show most viewed tweets to the user)
 
