@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.db import models
 from django.utils import timezone
+from django.core.validators import RegexValidator
 
 
 class UserManager(BaseUserManager):
@@ -27,7 +28,10 @@ class UserManager(BaseUserManager):
 
 class User(AbstractUser):
     username = None
-    phone = models.CharField(max_length=11, unique=True)
+    phone_regex = RegexValidator(regex = r'^[0][9]\d{9}$|^[1-9]\d{9}$',
+        message = 'Phone number up to 11 digits allowed start with 09')
+
+    phone = models.CharField(validators = [phone_regex], max_length=11, unique=True)
     token = models.CharField(max_length=64, blank=True, null=True)
     token_expiration_date = models.DateTimeField(null=True)
     salt = models.CharField(max_length=32, null=True)
