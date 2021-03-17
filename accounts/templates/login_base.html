@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  font-family: Arial;
+  color: red;
+}
+
+
+
+.split {
+  height: 100%;
+  width: 50%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+.left {
+  left: 0;
+  background-color: #111;
+}
+
+.right {
+  right: 0;
+  background-color: white;
+}
+
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+
+
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+input[type=submit] {
+  background-color: #A93226;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+input[type=submit]:hover {
+  opacity: 0.8;
+}
+
+.cancelbtn {
+  width: auto;
+  padding: 10px 18px;
+  background-color: #f44336;
+}
+
+.imgcontainer {
+  width: auto;
+  text-align: center;
+  margin:0 auto;
+}
+
+img.avatar {
+  width: 70%;
+  border-radius: 50%;
+}
+
+.container {
+  width: auto;
+  margin:0 auto;
+}
+</style>
+</head>
+<body>
+
+<div class="split left">
+  <div class="centered">
+    <h2>Social Network Project</h2>
+    <p>Make By:</p>
+    Ali<br>
+    Ebrahim<br>
+    Erfan<br>
+    Farhad<br>
+    Hussain<br><br>
+
+    2021 Django Bootcamp by Asghar Mirzaie<br><br>
+
+     Git source:<br> github.com/asi-mir/twitter-clone-with-django
+  </div>
+</div>
+
+<div class="split right">
+  <div class="centered">
+
+
+            {% block body %}
+            {% endblock %}
+
+    </div>
+  </div>
+  
+  </body>
+  </html>
