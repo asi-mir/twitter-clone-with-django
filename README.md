@@ -10,4 +10,4 @@ python manage.py runserver
 ```
 ## Requirements:
 - Python==3.9
-- Django==2.2.17
+- Django==3.1.7
