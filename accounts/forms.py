@@ -5,7 +5,7 @@ from django.core import validators
 from django.forms import ImageField
 from django.utils.safestring import mark_safe
 
-from .models import Profile, User
+from .models import Interest,Profile, User
 
 
 class PictureWidget(forms.widgets.Widget):
@@ -53,6 +53,11 @@ class ProfileView2(forms.ModelForm):
         fields = ["profile_image", "bio"]
 
 class InterestView(forms.ModelForm):
+    try:
+        choices = [(topic.id,topic.interest) for topic in Interest.objects.all()]
+    except:
+        choices = []
+    interest = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple,choices=choices)
     class Meta:
         model = Profile
         fields = ["interest"]
