@@ -17,15 +17,15 @@ def Profile(request):
 
 
 def ProfileUpdateView(request):
-        if request.method == 'POST':
-            pform = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
-            if pform.is_valid():
-                pform.save()
-                return redirect('/profile')
-        else:
-            pform = ProfileUpdateForm(instance=request.user.profile)
+    if request.method == 'POST':
+        pform = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
+        if pform.is_valid():
+            pform.save()
+            return redirect('/profile')
+    else:
+        pform = ProfileUpdateForm(instance=request.user.profile)
 
-        return render(request, 'profile/updateprofile.html', {'pform': pform})
+    return render(request, 'profile/updateprofile.html', {'pform': pform})
 
 
 class Account_info(View):
@@ -56,10 +56,10 @@ class Account_info2(View):
     template_name = "add_info2.html"
 
     def get(self, request, *args, **kwargs):
-        return render(request, self.template_name, {'form': self.form_class(instance =request.user.profile)})
+        return render(request, self.template_name, {'form': self.form_class(instance=request.user.profile)})
 
     def post(self, request):
-        form = self.form_class(request.POST, request.FILES , instance=request.user.profile)
+        form = self.form_class(request.POST, request.FILES, instance=request.user.profile)
         if form.is_valid():
             form.save()
             return redirect("accounts:interests")
@@ -178,11 +178,11 @@ class VerifyTokenView(View):
             return redirect("posts:home")
 
 
-
 class LogoutView(View):
     def get(self, request):
         logout(request)
         return redirect("accounts:signup")
+
 
 def LogoutConfirmView(request):
     return render(request, 'logout.html')

@@ -1,3 +1,5 @@
+import os
+
 from django import forms
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.db import models
@@ -28,10 +30,10 @@ class UserManager(BaseUserManager):
 
 class User(AbstractUser):
     username = None
-    phone_regex = RegexValidator(regex = r'^[0][9]\d{9}$|^[1-9]\d{9}$',
-        message = 'Phone number up to 11 digits allowed start with 09')
+    phone_regex = RegexValidator(regex=r'^[0][9]\d{9}$|^[1-9]\d{9}$',
+                                 message='Phone number up to 11 digits allowed start with 09')
 
-    phone = models.CharField(validators = [phone_regex], max_length=11, unique=True)
+    phone = models.CharField(validators=[phone_regex], max_length=11, unique=True)
     token = models.CharField(max_length=64, blank=True, null=True)
     token_expiration_date = models.DateTimeField(null=True)
     salt = models.CharField(max_length=32, null=True)
@@ -46,10 +48,14 @@ class User(AbstractUser):
 
 class Interest(models.Model):
     interest = models.CharField(max_length=20)
-    
 
     def __str__(self):
         return self.interest
+
+
+def file_path_dir(instance, filename):
+    return "uploaded/user/" + str(instance.user) + "/profile_pic/" + filename
+
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -63,7 +69,7 @@ class Profile(models.Model):
     )
     gender = models.CharField(max_length=6, choices=GENDER_CHOICES, null=True)
     bio = models.TextField(max_length=150, null=True)
-    profile_image = models.ImageField(default='profile_pics/default.png', upload_to='profile_pics')
+    profile_image = models.ImageField(default='profile_pics/default.png', upload_to=file_path_dir)
     birthdate = models.DateTimeField(blank=True, null=True)
     created_date = models.DateTimeField(blank=True, default=timezone.now)
     reported_times = models.PositiveIntegerField(blank=True, null=True)
@@ -90,5 +96,3 @@ class Follow(models.Model):
     user = models.ForeignKey(User, related_name='user', on_delete=models.CASCADE)
     follow_user = models.ForeignKey(User, related_name='follow_user', on_delete=models.CASCADE)
     date = models.DateTimeField(auto_now_add=True)
-
-
