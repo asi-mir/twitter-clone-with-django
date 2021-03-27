@@ -14,7 +14,8 @@ class Post(models.Model):
 
     parent = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=type)
     likes = models.ManyToManyField(User, related_name='tweets')
-    topic = models.ManyToManyField(Interest,related_name='topic')
+    topic = models.ManyToManyField(Interest, related_name='topic')
+
     # tags = TaggableManager()
 
     def __str__(self):
@@ -36,12 +37,12 @@ def file_path_dir(instance, filename):
     base_name = os.path.basename(filename)
     name, ext = os.path.splitext(base_name)
 
-    return "uploaded/user/post" + "/" + str(instance.post.author) + "/" + str(ext) + "/" + filename
+    return "uploaded/user" + "/" + str(instance.post.author) + "/post/" + str(ext) + "/" + filename
 
 
 class Files(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE, blank=False)
-    files = models.FileField(upload_to=file_path_dir, null=True, blank=True)
+    file = models.FileField(upload_to=file_path_dir, null=True, blank=True)
 
     def __str__(self):
         return self.post.body + 'File'

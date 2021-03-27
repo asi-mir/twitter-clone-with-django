@@ -1,7 +1,8 @@
 from django.contrib import admin
 
-from .models import Files, Post
+from .models import Post, Files
 
 admin.site.register(Post)
 admin.site.register(Files)
+
 
