@@ -54,12 +54,12 @@ class Interest(models.Model):
 
 
 def file_path_dir(instance, filename):
-    return "uploaded/user/" + str(instance.user) + "/profile_pic/" + filename
+    return "uploaded/user/" + str(instance.user_name) + "/profile_pic/" + filename
 
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    user_name = models.CharField(max_length=30, blank=False, default="")
+    user_name = models.CharField(max_length=30, blank=False, default="", unique=True)
     first_name = models.CharField(max_length=30, default="")
     last_name = models.CharField(max_length=30, blank=True, default="")
     GENDER_CHOICES = (

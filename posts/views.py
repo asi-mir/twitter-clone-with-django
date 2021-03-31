@@ -29,7 +29,6 @@ class TweetListView(LoginRequiredMixin, ListView):
 def create_post(request):
     if request.method == 'POST':
         author = request.user
-        print('posting')
         post_form = FeedModelForm(request.POST)
         file_form = FileModelForm(request.POST, request.FILES)
         files = request.FILES.getlist('file')
